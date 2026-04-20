@@ -1,8 +1,11 @@
 package com.praktikum7.deployment.service;
 
 
+import com.praktikum7.deployment.model.User;
 import com.praktikum7.deployment.repository.UserRepository;
 import org.springframework.stereotype.Service;
+
+import java.util.UUID;
 
 @Service
 public class UserService {
@@ -13,5 +16,8 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-
+    public User addUser(User request){
+        request.setId(UUID.randomUUID().toString());
+        return userRepository.save(request);
+    }
 }
